@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo apt install -y bridge-utils uml-utilities
 # 2. 创建一个名为 br0 的虚拟网桥
 sudo brctl addbr br0
@@ -12,12 +11,11 @@ sudo ifconfig tap0 0.0.0.0 up
 sudo brctl addif br0 tap0
 sleep 1 
 # 7. 启动 QEMU 虚拟机
-BASE_DIR="$HOME/tools"
 sudo qemu-system-mips \
   -M malta \
   -m 256 \
-  -kernel $BASE_DIR/IOT_TOOL/kernel/debian/mips/vmlinux-3.2.0-4-4kc-malta  \
-  -hda $BASE_DIR/IOT_TOOL/kernel/debian/mips/debian_wheezy_mips_standard.qcow2 \
+  -kernel $HOME/tools/iot_tools/kernel/debian/mips/vmlinux-3.2.0-4-4kc-malta  \
+  -hda $HOME/tools/iot_tools/kernel/debian/mips/debian_wheezy_mips_standard.qcow2 \
   -append "root=/dev/sda1 rw  console=ttyS0 loglevel=8" \
   -nographic \
   -display none \

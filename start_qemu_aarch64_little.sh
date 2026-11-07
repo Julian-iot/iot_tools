@@ -1,4 +1,3 @@
-#!/bin/bash
 sudo apt install -y bridge-utils uml-utilities
 # 2. 创建一个名为 br0 的虚拟网桥
 sudo brctl addbr br0
@@ -12,11 +11,10 @@ sudo ifconfig tap0 0.0.0.0 up
 sudo brctl addif br0 tap0
 sleep 1 
 # 7. 启动 QEMU 虚拟机
-BASE_DIR="$HOME/tools"
 sudo qemu-system-aarch64 \
   -machine virt \
   -cpu cortex-a57 \
-  -kernel $BASE_DIR=/IOT_TOOL/kernel/Image_aarch64_little \
+  -kernel $HOME/tools/iot_tools/kernel/Image_aarch64v8_el_4k \
   -drive file=rootfs.img,format=raw,if=virtio \
   -append "root=/dev/vda rw rootfstype=ext2 init=/bin/sh console=ttyAMA0 loglevel=8" \
   -nographic \

@@ -3,16 +3,16 @@
 # QEMU 启动脚本：TAP 网络设置、运行 QEMU 和清理
 # ----------------------------------------------------------------------
 
+
 # QEMU 启动参数：
 
-BASE_DIR="$HOME/tools"
 QEMU_CMD=(
     sudo qemu-system-arm 
     -M vexpress-a9
     -m 512M
     -no-user-config
-    -kernel $BASE_DIR/IOT_TOOL/kernel/zImage_arm_little
-    -dtb $BASE_DIR/IOT_TOOL/kernel/zImage_arm_little-vexpress-v2p-ca9.dtb
+    -kernel $HOME/tools/iot_tools/kernel/zImage_armv7_el_4k
+    -dtb $HOME/tools/iot_tools/kernel/zImage_arm_little-vexpress-v2p-ca9.dtb
     -nographic
     -append "root=/dev/mmcblk0 rw rootfstype=ext2 init=/bin/sh console=ttyAMA0 loglevel=8"
     -drive file=rootfs.img,format=raw,if=sd
